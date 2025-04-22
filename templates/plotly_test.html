@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plotly Test Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Підключаємо Plotly напряму -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Plotly Test Page</h1>
+        <p>Ця сторінка створена для тестування функціональності Plotly в ізольованому середовищі.</p>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Basic Plotly Test</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-plot" style="height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Plotly Info</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="plotly-info"></div>
+                        <button id="create-test-plot" class="btn btn-primary mt-3">Create Another Test Plot</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Вбудований скрипт для тесту -->
+    <script>
+        console.log('Plotly test page loaded');
+        
+        // Функція для відображення інформації про Plotly
+        function showPlotlyInfo() {
+            const infoElement = document.getElementById('plotly-info');
+            
+            if (window.Plotly) {
+                infoElement.innerHTML = `
+                    <div class="alert alert-success">
+                        <h4>Plotly успішно завантажено!</h4>
+                        <p>Version: ${Plotly.version}</p>
+                    </div>
+                `;
+            } else {
+                infoElement.innerHTML = `
+                    <div class="alert alert-danger">
+                        <h4>Помилка!</h4>
+                        <p>Plotly не доступний.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Функція для створення базового графіка
+        function createBasicPlot() {
+            console.log('Creating basic plot');
+            if (!window.Plotly) {
+                console.error('Plotly is not available');
+                return;
+            }
+            
+            const data = [{
+                x: [1, 2, 3, 4, 5],
+                y: [1, 3, 2, 5, 4],
+                type: 'scatter',
+                mode: 'lines+markers',
+                marker: {
+                    size: 10,
+                    color: 'rgba(255, 0, 0, 0.8)'
+                },
+                line: {
+                    width: 2,
+                    color: 'rgba(0, 0, 255, 0.8)'
+                }
+            }];
+            
+            const layout = {
+                title: 'Базовий тестовий графік',
+                xaxis: {
+                    title: 'X Вісь'
+                },
+                yaxis: {
+                    title: 'Y Вісь'
+                }
+            };
+            
+            try {
+                Plotly.newPlot('basic-plot', data, layout);
+                console.log('Basic plot created successfully');
+            } catch (error) {
+                console.error('Error creating basic plot:', error);
+                document.getElementById('basic-plot').innerHTML = `
+                    <div class="alert alert-danger">
+                        <h4>Помилка створення графіка:</h4>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Ініціалізація при завантаженні сторінки
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, checking Plotly');
+            showPlotlyInfo();
+            
+            // Спроба створити графік з затримкою
+            setTimeout(function() {
+                createBasicPlot();
+            }, 100);
+            
+            // Додаємо обробник для кнопки
+            document.getElementById('create-test-plot').addEventListener('click', function() {
+                console.log('Create test plot button clicked');
+                createBasicPlot();
+            });
+        });
+    </script>
+</body>
+</html> 
