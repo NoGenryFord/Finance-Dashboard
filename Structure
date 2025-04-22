@@ -1,0 +1,13 @@
+financial-dashboard/
+  ├── app.py
+  ├── requirements.txt
+  ├── static/
+  │   ├── css/
+  │   │   └── style.css
+  │   └── js/
+  │       └── main.js
+  ├── templates/
+  │   ├── index.html
+  │   ├── layout.html
+  │   └── dashboard.html
+  └── README.md

@@ -1,0 +1,28 @@
+# Віртуальне середовище Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Середовища розробки
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Тимчасові файли
+*.log
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Файли середовища
+.env
+.env.local
+
+# Залежності Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log 

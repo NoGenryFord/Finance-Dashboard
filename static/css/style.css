@@ -1,0 +1,31 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background-color: #f1f8ff;
+}
+
+#stockChart, #trendChart {
+    width: 100%;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.text-success {
+    color: #26a69a !important;
+}
+
+.text-danger {
+    color: #ef5350 !important;
+}
